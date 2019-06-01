@@ -52,7 +52,7 @@ class Language(BaseModel):
     )
 
     def __str__(self):
-        return self.title
+        return f'{self.title} [{self.level}]'
 
     class Meta:
         db_table = 'language'
@@ -116,7 +116,7 @@ class Event(BaseModel):
 
     language = models.ForeignKey(
         to=Language,
-        related_name='language',
+        related_name='event_language',
         on_delete=models.SET_NULL,
         null=True
     )

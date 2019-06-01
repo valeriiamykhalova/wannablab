@@ -3,7 +3,7 @@ from wannablab import models
 
 
 @admin.register(models.Comment)
-class ArticleAdmin(admin.ModelAdmin):
+class CommentAdmin(admin.ModelAdmin):
     pass
 
 
@@ -13,10 +13,10 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 @admin.register(models.Event)
-class TagAdmin(admin.ModelAdmin):
+class EventAdmin(admin.ModelAdmin):
     pass
 
 
 @admin.register(models.Language)
-class CommentAdmin(admin.ModelAdmin):
+class LanguageAdmin(admin.ModelAdmin):
     pass
