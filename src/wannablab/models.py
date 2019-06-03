@@ -3,6 +3,7 @@ from django.conf import settings
 from django.utils.translation import gettext as _
 from django.core.validators import MinValueValidator, MaxValueValidator
 from core.models import BaseModel
+from .choices import LanguageChoices
 
 
 class Category(BaseModel):
@@ -23,22 +24,6 @@ class Category(BaseModel):
 
 class Language(BaseModel):
 
-    BEGINNER = 'A1'
-    ELEMENTARY = 'A2'
-    INTERMEDIATE = 'B1'
-    UPPER_INTERMEDIATE = 'B2'
-    ADVANCED = 'C1'
-    PROFICIENCY = 'C2'
-
-    LEVEL_CHOICES = [
-        (BEGINNER, 'Beginner'),
-        (ELEMENTARY, 'Elementary'),
-        (INTERMEDIATE, 'Intermediate'),
-        (UPPER_INTERMEDIATE, 'Upper Intermediate'),
-        (ADVANCED, 'Advanced'),
-        (PROFICIENCY, 'Proficiency'),
-    ]
-
     title = models.CharField(
         max_length=50,
         verbose_name=_('Title')
@@ -46,8 +31,8 @@ class Language(BaseModel):
 
     level = models.CharField(
         max_length=2,
-        choices=LEVEL_CHOICES,
-        default=BEGINNER,
+        choices=LanguageChoices.LEVEL_CHOICES,
+        default=LanguageChoices.BEGINNER,
         verbose_name=_('Level')
     )
 
@@ -121,8 +106,12 @@ class Event(BaseModel):
         null=True
     )
 
-    date = models.DateTimeField(
+    date = models.DateField(
         verbose_name=_('Date')
+    )
+
+    time = models.TimeField(
+        verbose_name=_('Time')
     )
 
     max_members = models.IntegerField(
@@ -148,7 +137,7 @@ class Event(BaseModel):
         return self.topic
 
     class Meta:
-        db_table = 'Event'
+        db_table = 'event'
         verbose_name = _('Event')
         verbose_name_plural = _('Events')
 
