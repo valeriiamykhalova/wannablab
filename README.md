@@ -24,5 +24,10 @@ Clone this repo to your local machine using `git clone https://github.com/emerel
 - `pip install -r src/.meta/packages`
 - `cd src`
 - `python manage.py migrate`
-- `python manage.py runserver`
+- `python manage.py runserver` (Serve API on localhost:8000)
 
+### In new Tab
+- `cd wannablab`
+- `npm install`
+- `npm run dev` (Run webpack from root)
+- `npm run build` (Build for production)

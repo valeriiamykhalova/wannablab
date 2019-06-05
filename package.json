@@ -1,0 +1,41 @@
+{
+  "name": "wannablab",
+  "version": "1.0.0",
+  "description": "* [Python 3.7.x](https://www.python.org/) * [python-virtualenv](https://virtualenv.pypa.io/en/stable/installation/)  * [PIP](https://pip.pypa.io/en/latest/installing/) * [PostgreSQL 11.x](https://www.postgresql.org/) * [Node.js and npm](https://nodejs.org/uk/download/)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode development --watch ./src/frontend/src/index.js --output ./src/frontend/static/frontend/main.js",
+    "build": "webpack --mode production ./src/frontend/src/index.js --output ./src/frontend/static/frontend/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emerell/wannablab.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emerell/wannablab/issues"
+  },
+  "homepage": "https://github.com/emerell/wannablab#readme",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "eslint": "^5.16.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.2"
+  },
+  "dependencies": {
+    "css-loader": "^2.1.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.1",
+    "style-loader": "^0.23.1"
+  }
+}
