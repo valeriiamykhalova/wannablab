@@ -120,18 +120,32 @@ class Event(BaseModel):
         verbose_name=_('Max number of members')
     )
 
-    member = models.ForeignKey(
+    members = models.ManyToManyField(
         to=settings.AUTH_USER_MODEL,
         related_name='event_member',
-        verbose_name=_('Members'),
-        on_delete=models.SET_NULL,
-        null=True
+        verbose_name=_('Members')
     )
 
     location = models.CharField(
         max_length=100,
         verbose_name=_('Location')
     )
+
+    @property
+    def language_level(self):
+        return self.language.level
+
+    @property
+    def language_title(self):
+        return self.language.title
+
+    @property
+    def category_title(self):
+        return self.category.title
+
+    @property
+    def author_name(self):
+        return self.author.first_name
 
     def __str__(self):
         return self.topic

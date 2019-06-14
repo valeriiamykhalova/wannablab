@@ -5,6 +5,8 @@ require('../styles/style.styl');
 
 import Header from './layout/Header';
 
+import Events from './events/Events';
+
 import { Provider } from 'react-redux';
 import store from '../store';
 
@@ -13,6 +15,7 @@ class App extends Component {
         return (
             <Provider store={store}>
                 <Header />
+                <Events />
             </Provider>
         )
     }
