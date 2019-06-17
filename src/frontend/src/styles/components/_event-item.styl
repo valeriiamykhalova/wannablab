@@ -1,0 +1,114 @@
+.event-item 
+    margin-bottom: 20px
+    margin-top: 20px
+    position: relative
+    padding: 15px 10px
+    border: 1px solid #DDD
+    border-radius: 16px
+    box-shadow: 0 1pt 4pt rgba(0,0,0,0.16), 0 2pt 8pt rgba(0,0,0,0.08)
+
+
+.event-item__topic 
+    padding-left: 10px
+    letter-spacing: 2px
+    position: relative
+    color: #0057e7
+    font-size: 25px
+    font-weight: bold
+    text-transform: uppercase
+
+
+.event-item__description 
+    color: #054752
+    font-size: 18px
+    line-height: 20px
+    font-style: italic
+
+
+.event-item__topic::before 
+    content: ""
+    position: absolute
+    background-image: linear-gradient(to right, #ffa700, #ffa484, #ffbed6, #ffe2ff, #ffffff)
+    top: 50%
+    left: 0
+    height: 10px
+    width: 100%
+    transform: translateY(-55%)
+    z-index: -1
+
+
+.event-item__category 
+    font-family: 'billabongregular'
+    color:  color-orange
+    position: absolute
+    top: 5%
+    right: 5%
+    font-size: 28px
+
+
+.event-item__language 
+    position: relative
+    font-size: 22px
+    color: #054752
+    font-weight: bold
+    margin-top: 10px
+    margin-bottom: 10px
+
+
+.event-item__language-level 
+    position: absolute
+    font-size: 14px
+    background-color: #008744
+    padding: 5px 7px
+    border-radius: 52px
+    color: white
+    font-weight: bold
+    top: -2px
+    right: -39px
+
+
+.event-item__details 
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+
+.event-item__date, .event-item__time 
+    font-size: 22px
+    color: #054752
+    margin-right: 36px
+    font-weight: bold
+
+
+.event-item__user-wrapper 
+    flex-basis: 50%
+    display: flex
+    align-items: center
+
+
+.event-item__user 
+    color: #054752
+    margin-top: 10px
+    margin-right: 20px
+    font-size: 60px
+
+
+.event-item__user-details 
+    display: flex
+
+
+.event-item__member 
+    font-size: 33px
+    color: color-orange
+
+
+.event-item__members 
+    margin-left: auto
+    margin-right: 30px
+    margin-top: auto
+
+
+.event-item__star 
+    color: #054752
+    font-size: 14px
+    padding: 1px

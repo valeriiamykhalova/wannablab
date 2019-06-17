@@ -7,6 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('frontend.urls')),
     re_path(r'', include(('wannablab.urls', 'wannablab'), namespace='wannablab')),
+    re_path(r'', include(('users.urls', 'users'), namespace='users')),
 ]
 
 

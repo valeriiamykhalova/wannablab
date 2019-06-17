@@ -12,16 +12,16 @@ export class Header extends Component {
                     <a className="navbar-brand" href="#">
                         <div className="logo">WB</div>
                     </a>
-                    <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li className="nav-item">
-                            {/* <Link
-                                    to="/register"
-                                    className="nav-link">Register</Link> */}
+                            <Link
+                                to="/register"
+                                className="nav-link header__link">Register</Link>
                         </li>
                         <li className="nav-item">
-                            {/* <Link
-                                    to="/login"
-                                    className="nav-link">Log in</Link> */}
+                            <Link
+                                to="/login"
+                                className="nav-link header__link">Log in</Link>
                         </li>
                     </ul>
                 </div>
