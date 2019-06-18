@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'knox',
+    'django_pdb',
 
     'frontend',
 ]
@@ -61,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_pdb.middleware.PdbMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
