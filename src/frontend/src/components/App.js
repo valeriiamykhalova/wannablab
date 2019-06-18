@@ -1,6 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import {
+    HashRouter as Router,
+    Route,
+    Switch,
+    Redirect
+} from 'react-router-dom';
 
 require('../styles/style.styl');
 
@@ -16,8 +21,13 @@ import Event from './events/Event';
 
 import { Provider } from 'react-redux';
 import store from '../store';
+import { loadUser } from '../actions/auth';
 
 class App extends Component {
+    componentDidMount() {
+        store.dispatch(loadUser());
+    }
+
     render() {
         return (
             <Provider store={store}>
