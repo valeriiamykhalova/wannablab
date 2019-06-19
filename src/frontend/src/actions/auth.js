@@ -53,7 +53,7 @@ export const login = (username, password) => dispatch => {
                 payload: res.data
             });
         }).catch(err => {
-            console.log(err)
+            dispatch(returnErrors(err.response.data, err.response.status));
             dispatch({
                 type: LOGIN_FAIL
             });
@@ -76,7 +76,7 @@ export const register = ({ first_name, last_name, email, username, password }) =
                 payload: res.data
             });
         }).catch(err => {
-            console.log(err)
+            dispatch(returnErrors(err.response.data, err.response.status));
             dispatch({
                 type: REGISTER_FAIL
             });
@@ -91,7 +91,7 @@ export const logout = () => (dispatch, getState) => {
                 type: LOGOUT_SUCCESS
             });
         }).catch(err => {
-            console.log(err)
+            dispatch(returnErrors(err.response.data, err.response.status));
         });
 };
 
