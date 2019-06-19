@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { register } from '../../actions/auth';
+import { createMessage } from '../../actions/messages';
 
 export class Register extends Component {
     state = {
@@ -24,7 +25,9 @@ export class Register extends Component {
         e.preventDefault();
         const { first_name, last_name, username, email, password, password2 } = this.state;
         if (password !== password2) {
-            console.log("PasswordNotMatch") // TODO: Add message in UI
+            this.props.createMessage({
+                passwordNotMatch: 'Passwords do not match'
+            });
         } else {
             const newUser = {
                 first_name,
@@ -132,5 +135,5 @@ const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, { register })(Register);
+export default connect(mapStateToProps, { register, createMessage })(Register);
 

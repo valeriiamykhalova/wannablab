@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { createMessage } from './messages';
 
 import { GET_EVENTS } from './types';
 
@@ -6,6 +7,7 @@ import { GET_EVENTS } from './types';
 export const getEvents = () => dispatch => {
     axios.get('/api/v1/events/')
         .then(res => {
+
             dispatch({
                 type: GET_EVENTS,
                 payload: res.data
