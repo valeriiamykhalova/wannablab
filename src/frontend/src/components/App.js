@@ -22,6 +22,8 @@ import PrivateRoute from './common/PrivateRoute';
 
 import Events from './events/Events';
 import Event from './events/Event';
+import CreateForm from './events/CreateForm';
+
 
 import { Provider } from 'react-redux';
 import store from '../store';
@@ -45,6 +47,7 @@ class App extends Component {
                         <Fragment>
                             <Header />
                             <Alerts />
+                            <CreateForm />
                             <Switch>
                                 <Route exact path="/" component={Events} />
                                 <PrivateRoute exact path="/events/:number" component={Event} />

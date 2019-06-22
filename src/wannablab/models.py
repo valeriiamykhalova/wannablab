@@ -123,25 +123,14 @@ class Event(BaseModel):
     members = models.ManyToManyField(
         to=settings.AUTH_USER_MODEL,
         related_name='event_member',
-        verbose_name=_('Members')
+        verbose_name=_('Members'),
+        blank=True
     )
 
     location = models.CharField(
         max_length=100,
         verbose_name=_('Location')
     )
-
-    @property
-    def language_level(self):
-        return self.language.level
-
-    @property
-    def language_title(self):
-        return self.language.title
-
-    @property
-    def category_title(self):
-        return self.category.title
 
     @property
     def author_name(self):

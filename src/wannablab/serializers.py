@@ -6,7 +6,7 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = (
-            'id', 'title', 'created', 'updated'
+            'id', 'title'
                 )
 
 
@@ -18,20 +18,24 @@ class CommentSerializer(serializers.ModelSerializer):
         )
 
 
-class EventSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Event
-        fields = (
-            'id', 'topic', 'description', 'language_level', 'language_title',
-            'date', 'time', 'category_title', 'author_name',
-            'max_members', 'location',
-            'members', 'created'
-                )
-
-
 class LanguageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Language
         fields = (
-            'id', 'title', 'level', 'created', 'updated'
+            'id', 'title', 'level'
                 )
+
+
+class EventSerializer(serializers.ModelSerializer):
+    members = serializers.StringRelatedField(many=True)
+    language = LanguageSerializer(read_only=True)
+    category = CategorySerializer(read_only=True)
+
+    class Meta:
+        model = Event
+        fields = (
+            'id', 'topic', 'description', 'language',
+            'date', 'time', 'category', 'author_name',
+            'max_members', 'location',
+            'members', 'created'
+        )

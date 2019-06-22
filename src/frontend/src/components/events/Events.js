@@ -7,7 +7,9 @@ import { getEvents } from '../../actions/events';
 
 export class Events extends Component {
     static propTypes = {
-        events: PropTypes.array.isRequired
+        events: PropTypes.array.isRequired,
+        isLoading: PropTypes.bool,
+        getEvents: PropTypes.func.isRequired
     };
 
     componentDidMount() {
@@ -26,7 +28,7 @@ export class Events extends Component {
 
     render() {
         return (
-            <Fragment>
+            < Fragment >
                 <h1 className="visually-hidden">List of all events</h1>
                 <div className="wrapper">
                     <ul className="event-list">
@@ -34,14 +36,14 @@ export class Events extends Component {
                             <li className="event-item" key={event.id}>
                                 <Link to={"/events/" + event.id}>
                                     <h2 className="event-item__topic">{event.topic}</h2>
-                                    <span className="event-item__category">{event.category_title}</span>
+                                    {/* <span className="event-item__category">{event.category.title}</span> */}
                                     <div className="event-item__details">
                                         <div>
                                             <p className="event-item__description">{event.description}
                                             </p>
-                                            <span className="event-item__language">{event.language_title}
-                                                <span className="event-item__language-level">{event.language_level}</span>
-                                            </span>
+                                            {/* <span className="event-item__language">{event.language.title}
+                                                    <span className="event-item__language-level">{event.language.level}</span>
+                                                </span> */}
                                         </div>
                                         <div className="event-item__date-box">
                                             <div className="event-item__date">{this.showValidDate(event.date)}</div>
@@ -72,13 +74,14 @@ export class Events extends Component {
                         ))}
                     </ul>
                 </div>
-            </Fragment>
+            </Fragment >
         );
     }
 }
 
 const mapStateToProps = state => ({
-    events: state.events.events
+    events: state.events.events,
+    isLoading: state.events.isLoading
 });
 
 export default connect(mapStateToProps, { getEvents })(Events);
