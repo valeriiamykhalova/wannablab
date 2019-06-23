@@ -1,7 +1,8 @@
-import { GET_EVENTS } from '../actions/types.js';
+import { GET_EVENTS, GET_EVENT } from '../actions/types.js';
 
 const initialState = {
-    events: []
+    events: [],
+    event: {}
 }
 
 export default function (state = initialState, action) {
@@ -10,6 +11,11 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 events: action.payload
+            };
+        case GET_EVENT:
+            return {
+                ...state,
+                event: action.payload
             }
         default:
             return state;
