@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createMessage, returnErrors } from './messages';
 
-import { GET_EVENTS, CREATE_EVENT } from './types';
+import { GET_EVENTS, CREATE_EVENT, GET_EVENT } from './types';
 
 // GET EVENTS
 export const getEvents = () => dispatch => {
@@ -30,4 +30,14 @@ export const createEvent = event => dispatch => {
             err.response.data,
             err.response.status
         )));
+};
+
+export const getEvent = (id) => dispatch => {
+    axios.get(`/api/v1/events/${id}/`)
+        .then(res => {
+            dispatch({
+                type: GET_EVENT,
+                payload: res.data
+            });
+        }).catch(err => console.log(err));
 };

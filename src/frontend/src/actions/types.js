@@ -1,5 +1,6 @@
 export const GET_EVENTS = "GET_EVENTS";
 export const CREATE_EVENT = "CREATE_EVENT";
+export const GET_EVENT = "GET_EVENT";
 
 export const USER_LOADING = "USER_LOADING";
 export const USER_LOADED = "USER_LOADED";
