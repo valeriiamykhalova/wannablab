@@ -36,7 +36,7 @@ export class Events extends Component {
                             <li className="event-item" key={event.id}>
                                 <Link to={"/events/" + event.id}>
                                     <h2 className="event-item__topic">{event.topic}</h2>
-                                    {/* <span className="event-item__category">{event.category.title}</span> */}
+                                    {/* <span className="event-item__category">{event.category.title}</span>  */}
                                     <div className="event-item__details">
                                         <div>
                                             <p className="event-item__description">{event.description}
