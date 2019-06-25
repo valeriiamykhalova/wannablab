@@ -27,7 +27,6 @@ class LanguageSerializer(serializers.ModelSerializer):
 
 
 class EventSerializer(serializers.ModelSerializer):
-    members = serializers.StringRelatedField(many=True)
     language = LanguageSerializer(read_only=True)
     category = CategorySerializer(read_only=True)
 
@@ -36,6 +35,5 @@ class EventSerializer(serializers.ModelSerializer):
         fields = (
             'id', 'topic', 'description', 'language',
             'date', 'time', 'category', 'author_name',
-            'max_members', 'location',
-            'members', 'created'
+            'max_members', 'location', 'created'
         )

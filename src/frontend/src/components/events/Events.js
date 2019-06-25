@@ -27,55 +27,73 @@ export class Events extends Component {
     }
 
     render() {
-        return (
-            < Fragment >
-                <h1 className="visually-hidden">List of all events</h1>
-                <div className="wrapper">
-                    <ul className="event-list">
-                        {this.props.events.map(event => (
-                            <li className="event-item" key={event.id}>
-                                <Link to={"/events/" + event.id}>
-                                    <h2 className="event-item__topic">{event.topic}</h2>
-                                    {/* <span className="event-item__category">{event.category.title}</span>  */}
-                                    <div className="event-item__details">
-                                        <div>
-                                            <p className="event-item__description">{event.description}
-                                            </p>
-                                            {/* <span className="event-item__language">{event.language.title}
-                                                    <span className="event-item__language-level">{event.language.level}</span>
-                                                </span> */}
-                                        </div>
-                                        <div className="event-item__date-box">
-                                            <div className="event-item__date">{this.showValidDate(event.date)}</div>
-                                            <div className="event-item__time">{this.showValidTime(event.time)}</div>
-                                        </div>
-                                    </div>
-                                    <div className="event-item__user-details">
-                                        <div className="user-card">
-                                            <div className="fas fa-user-circle event-item__user"></div>
-                                            <div className="user-card__info">
-                                                <div className="user-card__name">{event.author_name}</div>
-                                                <div>
-                                                    <span className="fas fa-star event-item__star"></span>
-                                                    <span className="fas fa-star event-item__star"></span>
-                                                    <span className="fas fa-star event-item__star"></span>
-                                                    <span className="fas fa-star event-item__star"></span>
-                                                    <span className="fas fa-star event-item__star"></span>
-                                                </div>
+        if(this.props.events.length > 0) {
+            const ans = [];
+            for(let i = 0; i < this.props.events.length; i++){
+                const category_title = this.props.events[i].category.title;
+                const language_title = this.props.events[i].language.title;
+                const language_level = this.props.events[i].language.level;
+                ans.push(
+                    {
+                        category_title: category_title,
+                        language_title: language_title,
+                        language_level: language_level
+                    }
+                )
+            }
+            return (
+                < Fragment>
+                    <h1 className="visually-hidden">List of all events</h1>
+                    <div className="wrapper">
+                        <ul className="event-list">
+                            {this.props.events.map(event => (
+                                <li className="event-item" key={event.id}>
+                                    <Link to={"/events/" + event.id}>
+                                        <h2 className="event-item__topic">{event.topic}</h2>
+                                        <span className="event-item__category">{ ans[event.id-1].category_title }</span>
+                                        <div className="event-item__details">
+                                            <div>
+                                                <p className="event-item__description">{event.description}
+                                                </p>
+                                                {<span className="event-item__language">{ans[event.id-1].language_title}
+                                                    <span
+                                                        className="event-item__language-level">{ans[event.id-1].language_level}</span>
+                                                </span>}
+                                            </div>
+                                            <div className="event-item__date-box">
+                                                <div className="event-item__date">{this.showValidDate(event.date)}</div>
+                                                <div className="event-item__time">{this.showValidTime(event.time)}</div>
                                             </div>
                                         </div>
-                                        <div className="event-item__members">
-                                            <span className="far fa-user event-item__member"></span>
-                                            <span className="far fa-user event-item__member"></span>
+                                        <div className="event-item__user-details">
+                                            <div className="user-card">
+                                                <div className="fas fa-user-circle event-item__user"></div>
+                                                <div className="user-card__info">
+                                                    <div className="user-card__name">{event.author_name}</div>
+                                                    <div>
+                                                        <span className="fas fa-star event-item__star"></span>
+                                                        <span className="fas fa-star event-item__star"></span>
+                                                        <span className="fas fa-star event-item__star"></span>
+                                                        <span className="fas fa-star event-item__star"></span>
+                                                        <span className="fas fa-star event-item__star"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="event-item__members">
+                                                <span className="far fa-user event-item__member"></span>
+                                                <span className="far fa-user event-item__member"></span>
+                                            </div>
                                         </div>
-                                    </div>
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </Fragment >
-        );
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </Fragment>
+            );
+        } else {
+            return null;
+        }
     }
 }
 

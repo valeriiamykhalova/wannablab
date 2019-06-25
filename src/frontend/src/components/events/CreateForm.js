@@ -25,13 +25,30 @@ export class CreateForm extends Component {
 
     onSubmit = e => {
         e.preventDefault();
-        const { topic, description, language_level, language_title,
-            date, time, category_title, max_members, location
+        const { topic,
+                description,
+                language_level,
+                language_title,
+                date,
+                time,
+                category_title,
+                max_members,
+                location,
+                members
         } = this.state;
         const event = {
-            topic, description, language_level, language_title,
-            date, time, category_title, max_members, location
+                topic,
+                description,
+                language_level,
+                language_title,
+                date,
+                time,
+                category_title,
+                max_members,
+                location,
+                members
         };
+        console.log(event);
         this.props.createEvent(event);
         this.setState({
             topic: '',
@@ -48,8 +65,16 @@ export class CreateForm extends Component {
     };
 
     render() {
-        const { topic, description, language_level, language_title,
-            date, time, category_title, max_members, location } = this.state;
+        const { topic,
+                description,
+                language_level,
+                language_title,
+                date,
+                time,
+                category_title,
+                max_members,
+                location
+        } = this.state;
         return (
             <Fragment>
                 <div className="container">
