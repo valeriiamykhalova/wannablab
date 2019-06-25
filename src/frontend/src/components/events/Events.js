@@ -27,38 +27,32 @@ export class Events extends Component {
     }
 
     render() {
-        if(this.props.events.length > 0) {
-            const ans = [];
-            for(let i = 0; i < this.props.events.length; i++){
-                const category_title = this.props.events[i].category.title;
-                const language_title = this.props.events[i].language.title;
-                const language_level = this.props.events[i].language.level;
-                ans.push(
-                    {
-                        category_title: category_title,
-                        language_title: language_title,
-                        language_level: language_level
-                    }
-                )
-            }
+        const { isLoading, events } = this.props;
+        if (isLoading) {
+            return <h1>Loading...</h1>
+        } else {
             return (
                 < Fragment>
                     <h1 className="visually-hidden">List of all events</h1>
                     <div className="wrapper">
                         <ul className="event-list">
-                            {this.props.events.map(event => (
+                            {events.map(event => (
                                 <li className="event-item" key={event.id}>
                                     <Link to={"/events/" + event.id}>
                                         <h2 className="event-item__topic">{event.topic}</h2>
-                                        <span className="event-item__category">{ ans[event.id-1].category_title }</span>
+                                        <span className="event-item__category">{event.category ? event.category.title : ""}</span>
                                         <div className="event-item__details">
                                             <div>
                                                 <p className="event-item__description">{event.description}
                                                 </p>
-                                                {<span className="event-item__language">{ans[event.id-1].language_title}
-                                                    <span
-                                                        className="event-item__language-level">{ans[event.id-1].language_level}</span>
-                                                </span>}
+                                                {
+                                                    event.language ?
+                                                        <span className="event-item__language">{event.language.title}
+                                                            <span
+                                                                className="event-item__language-level">{event.language.level}</span>
+                                                        </span>
+                                                        : <span></span>
+                                                }
                                             </div>
                                             <div className="event-item__date-box">
                                                 <div className="event-item__date">{this.showValidDate(event.date)}</div>
@@ -91,8 +85,6 @@ export class Events extends Component {
                     </div>
                 </Fragment>
             );
-        } else {
-            return null;
         }
     }
 }
