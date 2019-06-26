@@ -1,4 +1,9 @@
-import { GET_EVENTS, CREATE_EVENT, GET_EVENT } from '../actions/types.js';
+import {
+    GET_EVENTS,
+    CREATE_EVENT,
+    GET_EVENT,
+    GET_EVENTS_WITH_TOKEN
+} from '../actions/types.js';
 
 const initialState = {
     events: [],
@@ -8,6 +13,7 @@ const initialState = {
 export default function (state = initialState, action) {
     switch (action.type) {
         case GET_EVENTS:
+        case GET_EVENTS_WITH_TOKEN:
             return {
                 ...state,
                 isLoading: false,

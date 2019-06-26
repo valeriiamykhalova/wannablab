@@ -1,0 +1,83 @@
+.personal-sidebar
+    margin-left: auto
+    margin-top: 59px
+    width: 371px
+    border-left: 2px solid #f5c05c
+    padding-left: 37px
+
+.personal-sidebar__item
+    list-style: none
+
+
+.personal-sidebar__title
+    padding-left: 10px
+    letter-spacing: 2px
+    position: relative
+    color: #0057e7
+    font-size: 25px
+    font-weight: bold
+    text-transform: uppercase
+
+.personal-sidebar__title::before
+    content: ""
+    position: absolute
+    background-image: linear-gradient(to right, #ffa700, #ffa484, #ffbed6, #ffe2ff, #ffffff)
+    top: 50%
+    left: 0
+    height: 10px
+    width: 100%
+    transform: translateY(-55%)
+    z-index: -1
+
+.personal-sidebar-event__topic
+    font-size: 18px
+    color: #054752
+    text-align: center
+    font-weight: bold
+    text-transform: uppercase
+    border-bottom: 1px solid #008744
+
+.personal-sidebar-event__item
+    color:  #008744
+    font-size: 19px
+    margin-left: 4px
+
+.custom-member-sm
+    font-size: 20px
+
+.personal-sidebar-event__details
+    display: flex
+    justify-content: space-around
+    align-items: center
+    margin-top: 12px
+    margin-bottom: 12px
+
+.personal-sidebar-event__date, .personal-sidebar-event__time
+    color: #054752
+    font-weight: bold
+
+.personal-sidebar-event__date::before
+    content: "Date: "
+    color: #054752
+    font-weight: normal
+
+.personal-sidebar-event__time::before
+    content: "Time: "
+    color: #054752
+    font-weight: normal
+
+.personal-sidebar-event
+    margin-bottom: 20px
+    margin-top: 20px
+    position: relative
+    padding: 15px 10px
+    border: 1px solid #DDD
+    border-radius: 16px
+    box-shadow: 0 1pt 4pt rgba(243, 0, 0, 0.16), 0 2pt 8pt rgb(28, 99, 27)
+
+.personal-sidebar-event__link-box
+    display: flex
+    justify-content: center
+
+.personal-sidebar-event__link
+    color:#0057e7

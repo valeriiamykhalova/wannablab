@@ -3,6 +3,7 @@ from django.conf import settings
 from django.utils.translation import gettext as _
 from django.core.validators import MinValueValidator, MaxValueValidator
 from core.models import BaseModel
+from django.contrib.auth.models import User
 from .choices import LanguageChoices
 
 
@@ -47,7 +48,7 @@ class Language(BaseModel):
 
 class Comment(BaseModel):
     author = models.ForeignKey(
-        to=settings.AUTH_USER_MODEL,
+        to=User,
         related_name='comment_author',
         verbose_name=_('Author'),
         on_delete=models.SET_NULL,
@@ -55,7 +56,7 @@ class Comment(BaseModel):
     )
 
     recipient = models.ForeignKey(
-        to=settings.AUTH_USER_MODEL,
+        to=User,
         related_name='comment_recipient',
         verbose_name=_('Recipient'),
         on_delete=models.SET_NULL,
@@ -92,7 +93,7 @@ class Event(BaseModel):
     )
 
     author = models.ForeignKey(
-        to=settings.AUTH_USER_MODEL,
+        to=User,
         related_name='event_author',
         verbose_name=_('Author'),
         on_delete=models.SET_NULL,
@@ -121,7 +122,7 @@ class Event(BaseModel):
     )
 
     members = models.ManyToManyField(
-        to=settings.AUTH_USER_MODEL,
+        to=User,
         related_name='event_member',
         verbose_name=_('Members'),
         blank=True

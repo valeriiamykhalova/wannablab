@@ -27,13 +27,14 @@ class LanguageSerializer(serializers.ModelSerializer):
 
 
 class EventSerializer(serializers.ModelSerializer):
-    language = LanguageSerializer(read_only=True)
-    category = CategorySerializer(read_only=True)
+    # language = LanguageSerializer(read_only=True)
+    # category = CategorySerializer(read_only=True)
 
     class Meta:
         model = Event
         fields = (
-            'id', 'topic', 'description', 'language',
-            'date', 'time', 'category', 'author_name',
-            'max_members', 'location', 'created'
+            'id', 'topic', 'description', 'language_id',
+            'date', 'time', 'category_id', 'author_name',
+            'max_members', 'location', 'created', 'author_id'
         )
+
