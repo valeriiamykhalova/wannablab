@@ -8,6 +8,7 @@ import { getPersonalEvents } from '../../actions/events';
 export class PersonalEvents extends Component {
     static propTypes = {
         events: PropTypes.array.isRequired,
+        auth: PropTypes.object.isRequired,
         showValidDate: PropTypes.func.isRequired,
         showValidTime: PropTypes.func.isRequired,
         getPersonalEvents: PropTypes.func.isRequired
@@ -18,12 +19,15 @@ export class PersonalEvents extends Component {
     }
 
     render() {
+        const filteredByAuthorEvents = this.props.events.filter(event =>
+            event.author_id === this.props.auth.user.id
+        );
         return (
             <Fragment>
                 <section className="personal-sidebar">
                     <h2 className="personal-sidebar__title">My Events</h2>
                     <ul className="personal-sidebar__list">
-                        {this.props.events.map(event => (
+                        {filteredByAuthorEvents.map(event => (
                             <li className="personal-sidebar__item" key={event.id}>
                                 <div className="personal-sidebar-event">
                                     <h2 className="personal-sidebar-event__topic">{event.topic}
@@ -56,6 +60,7 @@ export class PersonalEvents extends Component {
 
 const mapStateToProps = state => ({
     events: state.events.events,
+    auth: state.auth
 });
 
 export default connect(mapStateToProps, { getPersonalEvents })(PersonalEvents);
