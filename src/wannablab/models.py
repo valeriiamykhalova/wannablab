@@ -1,21 +1,19 @@
 from django.db import models
-from django.conf import settings
 from django.utils.translation import gettext as _
 from django.core.validators import MinValueValidator, MaxValueValidator
 from core.models import BaseModel
 from django.contrib.auth.models import User
-from .choices import LanguageChoices
 
 
 class Category(BaseModel):
-    title = models.CharField(
+    name = models.CharField(
         max_length=100,
         unique=True,
-        verbose_name=_('Title')
+        verbose_name=_('Name')
     )
 
     def __str__(self):
-        return self.title
+        return self.name
 
     class Meta:
         db_table = 'category'
@@ -25,25 +23,44 @@ class Category(BaseModel):
 
 class Language(BaseModel):
 
-    title = models.CharField(
+    name = models.CharField(
         max_length=50,
-        verbose_name=_('Title')
-    )
-
-    level = models.CharField(
-        max_length=2,
-        choices=LanguageChoices.LEVEL_CHOICES,
-        default=LanguageChoices.BEGINNER,
-        verbose_name=_('Level')
+        unique=True,
+        verbose_name=_('Name')
     )
 
     def __str__(self):
-        return f'{self.title} [{self.level}]'
+        return f'{self.name}'
 
     class Meta:
         db_table = 'language'
         verbose_name = _('Language')
         verbose_name_plural = _('Languages')
+
+
+class Level(BaseModel):
+
+    shot_name = models.CharField(
+        max_length=2,
+        unique=True,
+        blank=True,
+        verbose_name=_('Shot name')
+    )
+
+    full_name = models.CharField(
+        max_length=50,
+        unique=True,
+        blank=True,
+        verbose_name=_('Full name')
+    )
+
+    def __str__(self):
+        return f'{self.full_name} [{self.shot_name}]'
+
+    class Meta:
+        db_table = 'level'
+        verbose_name = _('Language level')
+        verbose_name_plural = _('Language levels')
 
 
 class Comment(BaseModel):
@@ -103,6 +120,13 @@ class Event(BaseModel):
     language = models.ForeignKey(
         to=Language,
         related_name='event_language',
+        on_delete=models.SET_NULL,
+        null=True
+    )
+
+    level = models.ForeignKey(
+        to=Level,
+        related_name='event_level',
         on_delete=models.SET_NULL,
         null=True
     )

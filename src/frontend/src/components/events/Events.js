@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getEvents } from '../../actions/events';
+import { getCategories } from '../../actions/categories';
+import { getLanguages } from '../../actions/languages';
+import { getLevels } from '../../actions/levels';
 import PersonalEvents from './PersonalEvents';
 
 
@@ -11,10 +14,15 @@ export class Events extends Component {
         events: PropTypes.array.isRequired,
         auth: PropTypes.object.isRequired,
         isLoading: PropTypes.bool,
-        getEvents: PropTypes.func.isRequired
+        getEvents: PropTypes.func.isRequired,
+        getCategories: PropTypes.func.isRequired,
+        getLanguages: PropTypes.func.isRequired
     };
 
     componentDidMount() {
+        this.props.getCategories();
+        this.props.getLanguages();
+        this.props.getLevels();
         this.props.getEvents();
     }
 
@@ -28,32 +36,38 @@ export class Events extends Component {
         return dateArray.slice(0, dateArray.length - 1).join(".")
     }
 
+    getNameById(id, array) {
+        return array.find(item => item.id === id).name
+    }
+
     render() {
-        const { isLoading, events, auth } = this.props;
+        const { isLoading, events, auth, categories, languages, levels } = this.props;
         if (isLoading) {
             return <h1>Loading...</h1>
         } else {
             return (
                 < Fragment>
                     <div className="events-container">
-                        <section>
+                        <section className="wrapper">
                             <h1 className="visually-hidden">List of all events</h1>
-                            <div className="wrapper">
+                            <div>
                                 <ul className="event-list">
                                     {events.map(event => (
                                         <li className="event-item" key={event.id}>
                                             <Link to={"/events/" + event.id}>
                                                 <h2 className="event-item__topic">{event.topic}</h2>
-                                                <span className="event-item__category">{event.category ? event.category.title : ""}</span>
+                                                <span className="event-item__category">
+                                                    {event.category_id ? this.getNameById(event.category_id, categories) : ""}
+                                                </span>
                                                 <div className="event-item__details">
                                                     <div>
                                                         <p className="event-item__description">{event.description}
                                                         </p>
                                                         {
-                                                            event.language ?
-                                                                <span className="event-item__language">{event.language.title}
+                                                            event.language_id ?
+                                                                <span className="event-item__language">{this.getNameById(event.language_id, languages)}
                                                                     <span
-                                                                        className="event-item__language-level">{event.language.level}</span>
+                                                                        className="event-item__language-level">{levels.find(level => level.id === event.level_id).shot_name}</span>
                                                                 </span>
                                                                 : <span></span>
                                                         }
@@ -103,8 +117,11 @@ export class Events extends Component {
 
 const mapStateToProps = state => ({
     events: state.events.events,
+    categories: state.categories.categories,
+    languages: state.languages.languages,
+    levels: state.levels.levels,
     isLoading: state.events.isLoading,
     auth: state.auth
 });
 
-export default connect(mapStateToProps, { getEvents })(Events);
+export default connect(mapStateToProps, { getEvents, getCategories, getLanguages, getLevels })(Events);

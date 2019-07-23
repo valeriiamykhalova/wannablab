@@ -16,3 +16,9 @@ export const REGISTER_FAIL = "REGISTER_FAIL";
 
 export const GET_ERRORS = "GET_ERRORS";
 export const CREATE_MESSAGE = "CREATE_MESSAGE";
+
+export const GET_LANGUAGES = "GET_LANGUAGES";
+
+export const GET_CATEGORIES = "GET_CATEGORIES";
+
+export const GET_LEVELS = "GET_LEVELS";

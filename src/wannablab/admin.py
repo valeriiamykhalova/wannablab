@@ -20,3 +20,8 @@ class EventAdmin(admin.ModelAdmin):
 @admin.register(models.Language)
 class LanguageAdmin(admin.ModelAdmin):
     pass
+
+
+@admin.register(models.Level)
+class LevelAdmin(admin.ModelAdmin):
+    pass

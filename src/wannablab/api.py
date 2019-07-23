@@ -1,11 +1,11 @@
-from wannablab.models import Category, Comment, Event, Language
-from rest_framework import viewsets, permissions, response
-from rest_framework import generics
+from wannablab.models import Category, Comment, Event, Language, Level
+from rest_framework import viewsets, permissions
 from .serializers import (
     CategorySerializer,
     CommentSerializer,
     EventSerializer,
     LanguageSerializer,
+    LevelSerializer
 )
 
 
@@ -35,11 +35,6 @@ class EventViewSet(viewsets.ModelViewSet):
 
     serializer_class = EventSerializer
 
-    # def get_queryset(self):
-    #     if self.request.user.is_authenticated:
-    #         return Event.objects.filter(author_id=self.request.user.id)
-    #     return Event.objects.all()
-
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
@@ -52,6 +47,14 @@ class LanguageViewSet(viewsets.ModelViewSet):
 
     serializer_class = LanguageSerializer
 
+
+class LevelViewSet(viewsets.ModelViewSet):
+    queryset = Level.objects.all()
+    permission_classes = [
+        permissions.AllowAny
+    ]
+
+    serializer_class = LevelSerializer
 
 
 

@@ -1,12 +1,12 @@
 from rest_framework import serializers
-from wannablab.models import Category, Comment, Event, Language
+from wannablab.models import Category, Comment, Event, Language, Level
 
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = (
-            'id', 'title'
+            'id', 'name'
                 )
 
 
@@ -22,18 +22,24 @@ class LanguageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Language
         fields = (
-            'id', 'title', 'level'
+            'id', 'name'
+                )
+
+
+class LevelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Level
+        fields = (
+            'id', 'shot_name', 'full_name'
                 )
 
 
 class EventSerializer(serializers.ModelSerializer):
-    # language = LanguageSerializer(read_only=True)
-    # category = CategorySerializer(read_only=True)
 
     class Meta:
         model = Event
         fields = (
-            'id', 'topic', 'description', 'language_id',
+            'id', 'topic', 'description', 'language_id', 'level_id',
             'date', 'time', 'category_id', 'author_name',
             'max_members', 'location', 'created', 'author_id'
         )

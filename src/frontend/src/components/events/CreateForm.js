@@ -7,18 +7,15 @@ export class CreateForm extends Component {
     state = {
         topic: '',
         description: '',
-        language_level: '',
-        language_title: '',
         date: '',
         time: '',
-        category_title: '',
         author_name: '',
         max_members: '',
         location: ''
     }
 
     static propTypes = {
-        createEvent: PropTypes.func.isRequired
+        createEvent: PropTypes.func.isRequired,
     };
 
     onChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -27,39 +24,32 @@ export class CreateForm extends Component {
         e.preventDefault();
         const { topic,
             description,
-            language_level,
-            language_title,
             date,
             time,
-            category_title,
             max_members,
             location,
+            category_id,
             members
         } = this.state;
         const event = {
             topic,
             description,
-            language_level,
-            language_title,
             date,
             time,
-            category_title,
             max_members,
             location,
+            category_id,
             members
         };
-        console.log(event);
         this.props.createEvent(event);
         this.setState({
             topic: '',
             description: '',
-            language_level: '',
-            language_title: '',
             date: '',
             time: '',
-            category_title: '',
             author_name: '',
             max_members: '',
+            category_id: '',
             location: ''
         });
     };
@@ -67,14 +57,12 @@ export class CreateForm extends Component {
     render() {
         const { topic,
             description,
-            language_level,
-            language_title,
             date,
             time,
-            category_title,
             max_members,
-            location
+            location,
         } = this.state;
+        const { categories, languages, levels } = this.props;
         return (
             <Fragment>
                 <div className="container">
@@ -95,13 +83,15 @@ export class CreateForm extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label>Category</label>
-                                        <input
+                                        <select
                                             className="form-control"
-                                            type="text"
-                                            name="category_title"
+                                            name="category_id"
                                             onChange={this.onChange}
-                                            value={category_title}
-                                        />
+                                        >
+                                            {categories.map(category => (
+                                                <option value={category.id} key={category.id}>{category.name}</option>
+                                            ))}
+                                        </select>
                                     </div>
                                     <div className="col">
                                         <label>Number of members</label>
@@ -131,24 +121,18 @@ export class CreateForm extends Component {
                                 <label>Language</label>
                                 <div className="row">
                                     <div className="col">
-                                        <input
-                                            className="form-control"
-                                            type="text"
-                                            placeholder="English"
-                                            name="language_title"
-                                            onChange={this.onChange}
-                                            value={language_title}
-                                        />
+                                        <select className="form-control" name="language_id">
+                                            {languages.map(language => (
+                                                <option value={language.id} key={language.id}>{language.name}</option>
+                                            ))}
+                                        </select>
                                     </div>
                                     <div className="col">
-                                        <input
-                                            className="form-control"
-                                            type="text"
-                                            placeholder="B1"
-                                            name="language_level"
-                                            onChange={this.onChange}
-                                            value={language_level}
-                                        />
+                                        <select className="form-control" name="level_id">
+                                            {levels.map(level => (
+                                                <option value={level.id} key={level.id}>{level.full_name}</option>
+                                            ))}
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -196,4 +180,11 @@ export class CreateForm extends Component {
     }
 }
 
-export default connect(null, { createEvent })(CreateForm);
+const mapStateToProps = state => ({
+    events: state.events.events,
+    categories: state.categories.categories,
+    languages: state.languages.languages,
+    levels: state.levels.levels
+});
+
+export default connect(mapStateToProps, { createEvent })(CreateForm);
