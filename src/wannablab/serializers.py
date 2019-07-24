@@ -30,11 +30,14 @@ class LevelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Level
         fields = (
-            'id', 'shot_name', 'full_name'
+            'id', 'name', 'full_name'
                 )
 
 
 class EventSerializer(serializers.ModelSerializer):
+    category_id = serializers.IntegerField(read_only=False)
+    level_id = serializers.IntegerField(read_only=False)
+    language_id = serializers.IntegerField(read_only=False)
 
     class Meta:
         model = Event

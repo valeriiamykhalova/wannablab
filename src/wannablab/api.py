@@ -36,6 +36,8 @@ class EventViewSet(viewsets.ModelViewSet):
     serializer_class = EventSerializer
 
     def perform_create(self, serializer):
+        # import ipdb
+        # ipdb.set_trace()
         serializer.save(author=self.request.user)
 
 

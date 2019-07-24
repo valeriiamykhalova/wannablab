@@ -9,7 +9,9 @@ export class CreateForm extends Component {
         description: '',
         date: '',
         time: '',
-        author_name: '',
+        category_id: '1', // TODO: set default values in normal way
+        level_id: '2',
+        language_id: '1',
         max_members: '',
         location: ''
     }
@@ -29,6 +31,8 @@ export class CreateForm extends Component {
             max_members,
             location,
             category_id,
+            language_id,
+            level_id,
             members
         } = this.state;
         const event = {
@@ -39,6 +43,8 @@ export class CreateForm extends Component {
             max_members,
             location,
             category_id,
+            language_id,
+            level_id,
             members
         };
         this.props.createEvent(event);
@@ -47,9 +53,10 @@ export class CreateForm extends Component {
             description: '',
             date: '',
             time: '',
-            author_name: '',
             max_members: '',
-            category_id: '',
+            category_id: '1', // TODO: update default values in normal way
+            level_id: '2',
+            language_id: '1',
             location: ''
         });
     };
@@ -61,6 +68,9 @@ export class CreateForm extends Component {
             time,
             max_members,
             location,
+            language_id,
+            level_id,
+            category_id
         } = this.state;
         const { categories, languages, levels } = this.props;
         return (
@@ -86,6 +96,7 @@ export class CreateForm extends Component {
                                         <select
                                             className="form-control"
                                             name="category_id"
+                                            value={category_id}
                                             onChange={this.onChange}
                                         >
                                             {categories.map(category => (
@@ -121,14 +132,25 @@ export class CreateForm extends Component {
                                 <label>Language</label>
                                 <div className="row">
                                     <div className="col">
-                                        <select className="form-control" name="language_id">
+                                        <select
+                                            className="form-control"
+                                            name="language_id"
+                                            value={language_id}
+                                            onChange={this.onChange}
+                                        >
                                             {languages.map(language => (
                                                 <option value={language.id} key={language.id}>{language.name}</option>
                                             ))}
                                         </select>
                                     </div>
                                     <div className="col">
-                                        <select className="form-control" name="level_id">
+                                        <select
+                                            className="form-control"
+                                            name="level_id"
+                                            value={this.state.defaultValue}
+                                            value={level_id}
+                                            onChange={this.onChange}
+                                        >
                                             {levels.map(level => (
                                                 <option value={level.id} key={level.id}>{level.full_name}</option>
                                             ))}

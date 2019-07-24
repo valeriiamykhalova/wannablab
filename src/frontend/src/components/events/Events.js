@@ -67,7 +67,7 @@ export class Events extends Component {
                                                             event.language_id ?
                                                                 <span className="event-item__language">{this.getNameById(event.language_id, languages)}
                                                                     <span
-                                                                        className="event-item__language-level">{levels.find(level => level.id === event.level_id).shot_name}</span>
+                                                                        className="event-item__language-level">{this.getNameById(event.level_id, levels)}</span>
                                                                 </span>
                                                                 : <span></span>
                                                         }

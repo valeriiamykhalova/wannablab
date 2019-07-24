@@ -40,7 +40,7 @@ class Language(BaseModel):
 
 class Level(BaseModel):
 
-    shot_name = models.CharField(
+    name = models.CharField(
         max_length=2,
         unique=True,
         blank=True,
